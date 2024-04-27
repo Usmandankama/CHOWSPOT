@@ -18,8 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: colors.primaryColor,
       appBar: AppBar(
+        elevation: 1,
         toolbarHeight: 60,
-        backgroundColor: colors.primaryColor,
+        backgroundColor: colors.complementaryColor,
         title: Row(
           children: [
             ClipRRect(
