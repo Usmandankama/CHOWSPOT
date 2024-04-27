@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: colors.primaryColor,
       appBar: AppBar(
-        elevation: 1,
         toolbarHeight: 60,
         backgroundColor: colors.complementaryColor,
         title: Row(
@@ -38,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           children: [
+            Container(
+              height: 100,
+              color: colors.complementaryColor,
+            ),
             Container(
                 // padding: const EdgeInsets.all(10),
                 height: 150,
@@ -64,9 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
         gap: 8,
         activeColor: Colors.black,
         tabs: const [
-          GButton(icon: Icons.home_rounded, text: "Home"),
-          GButton(icon: Icons.search_rounded, text: "Search"),
-          GButton(icon: Icons.settings_rounded, text: "Settings"),
+          GButton(icon: Icons.home_rounded),
+          GButton(icon: Icons.favorite_border_rounded),
+          GButton(icon: Icons.favorite_border_rounded),
+          GButton(icon: Icons.settings_rounded),
         ],
       ),
     );

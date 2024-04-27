@@ -27,6 +27,22 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
       text: 'Burger',
       image: 'assets/icons/hamburger.png',
     ),
+    Categories(
+      text: 'Pizza',
+      image: 'assets/icons/pizza.png',
+    ),
+    Categories(
+      text: 'Vegan',
+      image: 'assets/images/2.jpg',
+    ),
+    Categories(
+      text: 'Ramen',
+      image: 'assets/icons/ramen.png',
+    ),
+    Categories(
+      text: 'Burger',
+      image: 'assets/icons/hamburger.png',
+    ),
   ];
 
   @override
@@ -42,8 +58,8 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
             Column(
               children: [
                 Container( 
-                  height: 70,
-                  width: 70,
+                  height: 50,
+                  width: 50,
                   decoration: BoxDecoration(
                     // boxShadow: [
                     //   BoxShadow(
