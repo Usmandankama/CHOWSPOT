@@ -133,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onPressed: () {},
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStatePropertyAll(colors.complementaryColor),
+                        MaterialStatePropertyAll(colors.accentColor),
                     padding: const MaterialStatePropertyAll(
                       EdgeInsets.symmetric(
                         horizontal: 60,
@@ -181,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         'Login',
                         style: TextStyle(
                           fontSize: 13,
-                          color: colors.complementaryColor,
+                          color: colors.accentColor,
                           fontFamily: 'Poppins',
                         ),
                       ),

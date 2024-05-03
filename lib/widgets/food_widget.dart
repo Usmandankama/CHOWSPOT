@@ -106,7 +106,7 @@ class _FoodWidgetState extends State<FoodWidget> {
                   style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 13,
-                      color: colors.complementaryColor),
+                      color: colors.accentColor),
                 ),
               ),
             ],

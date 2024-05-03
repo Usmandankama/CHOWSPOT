@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStatePropertyAll(colors.complementaryColor),
+                        MaterialStatePropertyAll(colors.accentColor),
                     padding: const MaterialStatePropertyAll(
                       EdgeInsets.symmetric(
                         horizontal: 60,
@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Register',
                         style: TextStyle(
                           fontSize: 13,
-                          color: colors.complementaryColor,
+                          color: colors.accentColor,
                           fontFamily: 'Poppins',
                         ),
                       ),

@@ -2,140 +2,154 @@ import 'package:flutter/material.dart';
 import 'package:chow_spot/constants/colors.dart' as colors;
 
 class OrderScreen extends StatefulWidget {
-  String foodName;
-  String imagePath;
-  double price;
+  final String foodName;
+  final String imagePath;
+  final double price;
+
   OrderScreen({
-    super.key,
     required this.foodName,
     required this.imagePath,
     required this.price,
   });
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  _OrderScreenState createState() => _OrderScreenState();
 }
 
 class _OrderScreenState extends State<OrderScreen> {
   int orderCount = 1;
   bool isFavourite = false;
 
-// Widget _Ord
-
-  Widget orderWidget(double foodprice){
-    return Container();
-  }
+  double get totalPrice => widget.price * orderCount;
 
   @override
   Widget build(BuildContext context) {
-     double totalPrice = widget.price * orderCount;
     return Scaffold(
       backgroundColor: colors.primaryColor,
       appBar: AppBar(
         backgroundColor: colors.primaryColor,
+        elevation: 0,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Order',
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: colors.textColor,
           ),
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.all(20),
         children: [
           Container(
             height: 200,
             decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage(widget.imagePath),
-              fit: BoxFit.cover,
-            )),
+              image: DecorationImage(
+                image: AssetImage(widget.imagePath),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
+          const SizedBox(height: 20),
+          Text(
+            widget.foodName,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: colors.textColor,
+            ),
+          ),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.foodName,
+                '\$$totalPrice',
                 style: TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 20,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: colors.accentColor,
                 ),
               ),
               IconButton(
                 onPressed: () {
-                  if (isFavourite) {
-                    setState(() {
-                      isFavourite = false;
-                    });
-                  } else {
-                    setState(() {
-                      isFavourite = true;
-                    });
-                  }
+                  setState(() {
+                    isFavourite = !isFavourite;
+                  });
                 },
-                icon: isFavourite
-                    ? const Icon(
-                        Icons.favorite_rounded,
-                        color: Colors.red,
-                      )
-                    : const Icon(
-                        Icons.favorite_outline_rounded,
-                        size: 25,
-                      ),
+                icon: Icon(
+                  isFavourite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavourite ? colors.accentColor : colors.textColor,
+                ),
               ),
             ],
           ),
+          const SizedBox(height: 20),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
                 onPressed: () {
-                  if (orderCount > 0) {
-                    setState(() {
+                  setState(() {
+                    if (orderCount > 1) {
                       orderCount--;
-                      // foodPrice = foodPrice * orderCount;
-                    });
-                  }
+                    }
+                  });
                 },
-                icon: const Icon(
-                  Icons.remove_circle_outline_rounded,
+                icon: Icon(
+                  Icons.remove,
+                  color: colors.accentColor,
                 ),
               ),
               Text(
-                '$orderCount',
-                style: const TextStyle(
+                orderCount.toString(),
+                style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: colors.textColor,
                 ),
               ),
               IconButton(
                 onPressed: () {
                   setState(() {
                     orderCount++;
-                    // foodPrice = foodPrice * orderCount;
                   });
                 },
                 icon: Icon(
-                  Icons.add_circle_rounded,
-                  color: colors.complementaryColor,
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Text(
-                '\$$totalPrice',
-                // '',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 20,
-                  color: colors.complementaryColor,
+                  Icons.add,
+                  color: colors.accentColor,
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              // Implement order functionality
+            },
+            style: ElevatedButton.styleFrom(
+              primary: colors.accentColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Text(
+                'Add to Cart',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ],
       ),

@@ -54,7 +54,7 @@ class _StartupScreenState extends State<StartupScreen> {
                 ),
               ),
               backgroundColor: MaterialStatePropertyAll(
-                colors.complementaryColor,
+                colors.accentColor,
               ),
             ),
             onPressed: () {
