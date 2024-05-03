@@ -12,11 +12,11 @@ class TestContainer2 extends StatelessWidget {
           height: 75,
           width: 400,
           decoration: BoxDecoration(
-            color: colors.complementaryColor,
+            color: colors.textColor,
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        SizedBox(height: 10)
+        const SizedBox(height: 10),
       ],
     );
   }

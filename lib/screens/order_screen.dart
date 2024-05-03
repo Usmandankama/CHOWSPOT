@@ -20,9 +20,15 @@ class _OrderScreenState extends State<OrderScreen> {
   int orderCount = 1;
   bool isFavourite = false;
 
+// Widget _Ord
+
+  Widget orderWidget(double foodprice){
+    return Container();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // double foodPrice = widget.price;
+     double totalPrice = widget.price * orderCount;
     return Scaffold(
       backgroundColor: colors.primaryColor,
       appBar: AppBar(
@@ -90,7 +96,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   if (orderCount > 0) {
                     setState(() {
                       orderCount--;
-                      foodPrice = foodPrice * orderCount;
+                      // foodPrice = foodPrice * orderCount;
                     });
                   }
                 },
@@ -109,7 +115,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 onPressed: () {
                   setState(() {
                     orderCount++;
-                      foodPrice = foodPrice * orderCount;
+                    // foodPrice = foodPrice * orderCount;
                   });
                 },
                 icon: Icon(
@@ -121,7 +127,8 @@ class _OrderScreenState extends State<OrderScreen> {
                 width: 20,
               ),
               Text(
-                '\$$foodPrice',
+                '\$$totalPrice',
+                // '',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 20,

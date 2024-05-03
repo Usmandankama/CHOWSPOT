@@ -58,29 +58,25 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
             Column(
               children: [
                 InkWell(
-                  overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-                  onTap: () {
-                    
-                  },
-                  child: Container( 
+                  overlayColor:
+                      const MaterialStatePropertyAll(Colors.transparent),
+                  onTap: () {},
+                  child: Container(
                     height: 50,
                     width: 50,
                     decoration: BoxDecoration(
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: const Color.fromARGB(40, 0, 0, 0).withOpacity(0.5),
-                      //     spreadRadius: 2,
-                      //     blurRadius: 5,
-                      //     offset: const Offset(2, 0), // changes position of shadow
-                      //   ),
-                      // ],
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                          image: AssetImage(category.image), fit: BoxFit.cover),
+                        image: AssetImage(category.image),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-                Text(category.text)
+                Text(
+                  category.text,
+                  style: TextStyle(color: colors.textColor),
+                ),
               ],
             ),
             const SizedBox(width: 20)
