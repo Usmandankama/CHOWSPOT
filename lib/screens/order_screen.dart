@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:chow_spot/constants/colors.dart' as colors;
 
+import '../model/Food.dart';
+
 class OrderScreen extends StatefulWidget {
   final String foodName;
   final String imagePath;
   final double price;
+  List<Food> cartItems = [];
 
-  OrderScreen({
-    required this.foodName,
-    required this.imagePath,
-    required this.price,
-  });
+  OrderScreen(
+      {super.key,
+      required this.foodName,
+      required this.imagePath,
+      required this.price,
+      required this.cartItems});
 
   @override
-  _OrderScreenState createState() => _OrderScreenState();
+  OrderScreenState createState() => OrderScreenState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
+class OrderScreenState extends State<OrderScreen> {
   int orderCount = 1;
   bool isFavourite = false;
-
   double get totalPrice => widget.price * orderCount;
+
+  void _addToCart(Food food) {
+    setState(() {
+      widget.cartItems.add(food);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +51,7 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           Container(
             height: 200,
@@ -131,15 +141,21 @@ class _OrderScreenState extends State<OrderScreen> {
           ElevatedButton(
             onPressed: () {
               // Implement order functionality
+              final food = Food(
+                foodName: widget.foodName,
+                imagePath: widget.imagePath,
+                price: totalPrice,
+              );
+              _addToCart(food);
             },
             style: ElevatedButton.styleFrom(
-              primary: colors.accentColor,
+              backgroundColor: colors.accentColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
             child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.symmetric(vertical: 20),
               child: Text(
                 'Add to Cart',
                 style: TextStyle(
@@ -151,6 +167,7 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );

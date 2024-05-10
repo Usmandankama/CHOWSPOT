@@ -16,10 +16,6 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
       image: 'assets/icons/pizza.png',
     ),
     Categories(
-      text: 'Vegan',
-      image: 'assets/images/2.jpg',
-    ),
-    Categories(
       text: 'Ramen',
       image: 'assets/icons/ramen.png',
     ),
@@ -28,8 +24,8 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
       image: 'assets/icons/hamburger.png',
     ),
     Categories(
-      text: 'Pizza',
-      image: 'assets/icons/pizza.png',
+      text: 'Chicken',
+      image: 'assets/icons/chicken.png',
     ),
     Categories(
       text: 'Vegan',
@@ -38,10 +34,6 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
     Categories(
       text: 'Ramen',
       image: 'assets/icons/ramen.png',
-    ),
-    Categories(
-      text: 'Burger',
-      image: 'assets/icons/hamburger.png',
     ),
   ];
 

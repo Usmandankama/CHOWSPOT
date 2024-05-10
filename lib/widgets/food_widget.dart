@@ -5,14 +5,10 @@ import 'package:chow_spot/constants/colors.dart' as colors;
 
 import '../model/Food.dart';
 
-class FoodWidget extends StatefulWidget {
-  const FoodWidget({super.key});
+class FoodWidget extends StatelessWidget {
+  List<Food> cartItems = [];
+  FoodWidget({super.key, required this.cartItems});
 
-  @override
-  State<FoodWidget> createState() => _FoodWidgetState();
-}
-
-class _FoodWidgetState extends State<FoodWidget> {
   List<Food> foods = [
     Food(
         foodName: 'Chicken Teriyaki',
@@ -66,6 +62,7 @@ class _FoodWidgetState extends State<FoodWidget> {
               context,
               MaterialPageRoute(
                 builder: (context) => OrderScreen(
+                  cartItems: cartItems,
                   foodName: currentFood.foodName,
                   imagePath: currentFood.imagePath,
                   price: currentFood.price,

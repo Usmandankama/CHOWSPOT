@@ -1,3 +1,4 @@
+import 'package:chow_spot/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chow_spot/constants/colors.dart' as colors;
 import 'package:chow_spot/screens/cart_screen.dart';
@@ -5,6 +6,7 @@ import 'package:chow_spot/widgets/categories_widget.dart';
 import 'package:chow_spot/widgets/food_widget.dart';
 import 'package:chow_spot/widgets/offers_widget.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import '../model/Food.dart';
 import 'favourites_screen.dart';
 import 'menu_screen.dart';
 import 'settings_screen.dart';
@@ -13,10 +15,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   final screens = [
     const HomePage(),
     const MenuScreen(),
@@ -54,8 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Food> cartItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +90,7 @@ class HomePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CartScreen(),
+                  builder: (context) => CartScreen(cartItems: cartItems),
                 ),
               );
             },
@@ -129,7 +138,14 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CategoriesScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'View all',
                         style: TextStyle(
@@ -160,7 +176,12 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const SizedBox(height:500,child: FoodWidget(),),
+            SizedBox(
+              height: 500,
+              child: FoodWidget(
+                cartItems: cartItems,
+              ),
+            ),
           ],
         ),
       ),

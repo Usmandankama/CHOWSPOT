@@ -1,7 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:chow_spot/constants/colors.dart' as colors;
 
-class CartScreen extends StatelessWidget {
+import '../model/Food.dart';
+
+class CartScreen extends StatefulWidget {
+  List<Food> cartItems = [];
+  CartScreen({super.key, required this.cartItems});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  void _removeFromCart(int index) {
+    setState(() {
+      widget.cartItems.removeAt(index);
+    });
+  }
+
+  Widget _buildCartItem(Food food, int index) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage(food.imagePath),
+          ),
+          title: Text(
+            food.foodName,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 16,
+              color: colors.textColor,
+            ),
+          ),
+          subtitle: Text(
+            '\$${food.price}', // Replace with actual item price
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 14,
+              color: colors.textColor,
+            ),
+          ),
+          trailing: IconButton(
+            icon: Icon(
+              Icons.remove_circle_outline,
+              color: colors.accentColor,
+            ),
+            onPressed: () {
+              // Implement remove item functionality
+              _removeFromCart(index);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,57 +81,18 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: 3, // Replace with actual item count from the cart
+        itemCount: widget.cartItems.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                leading: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage('assets/food_image.jpg'),
-                ),
-                title: Text(
-                  'Item Name',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 16,
-                    color: colors.textColor,
-                  ),
-                ),
-                subtitle: Text(
-                  '\$10.99', // Replace with actual item price
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 14,
-                    color: colors.textColor,
-                  ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.remove_circle_outline,
-                    color: colors.accentColor,
-                  ),
-                  onPressed: () {
-                    // Implement remove item functionality
-                  },
-                ),
-              ),
-            ),
-          );
+          return _buildCartItem(widget.cartItems[index], index);
         },
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Total: \$32.97', // Replace with actual total price
+              'Total:', 
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 18,
@@ -84,13 +105,13 @@ class CartScreen extends StatelessWidget {
                 // Implement checkout functionality
               },
               style: ElevatedButton.styleFrom(
-                primary: colors.accentColor,
+                backgroundColor: colors.accentColor,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text(
                   'Checkout',
@@ -108,3 +129,19 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(backgroundColor: primaryColor,
+//         title: const Text('E-commerce Cart',),
+//       ),
+//       body: ListView.builder(
+//      
+//     );
+//   }
+// }

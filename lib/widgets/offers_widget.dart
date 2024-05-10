@@ -45,7 +45,7 @@ class _OffersWidgetState extends State<OffersWidget> {
               height: 150,
               width: 280,
               decoration: BoxDecoration(
-                color: colors.accentColor,
+                color: Colors.white70,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
